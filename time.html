@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bangladesh Time</title>
+    <link rel="stylesheet" href="time.css" />
+  </head>
+  <body>
+    <div class="call">
+      <h1>Janu Basse agong.....11 tai call dij</h1>
+      <h2 id="bd-time"></h2>
+      <h4>Remaining Time:</h4>
+      <h3 id="remaining-time"></h3>
+    </div>
+
+    <script>
+      function updateTime() {
+        const now = new Date();
+
+        // Convert to BD time
+        const bdNow = new Date(
+          now.toLocaleString("en-US", { timeZone: "Asia/Dhaka" })
+        );
+
+        // Show BD time
+        const bdTimeStr = bdNow.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        });
+        document.getElementById("bd-time").innerText = `${bdTimeStr}`;
+        const target = new Date(bdNow);
+        target.setHours(23, 0, 0, 0);
+        if (bdNow > target) {
+          target.setDate(target.getDate() + 1);
+        }
+        const diffMs = target - bdNow;
+        const hours = Math.floor(diffMs / (1000 * 60 * 60));
+        const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+        const remainingStr = `${hours}h ${minutes}m ${seconds}s`;
+        document.getElementById("remaining-time").innerText = remainingStr;
+      }
+
+      setInterval(updateTime, 1000);
+      updateTime();
+    </script>
+  </body>
+</html>

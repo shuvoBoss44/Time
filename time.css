@@ -1,0 +1,25 @@
+* {
+  font-family: sans-serif;
+}
+.call {
+  text-align: center;
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: brown;
+}
+#bd-time {
+  font-weight: bolder;
+  color: green;
+}
+#remaining-time {
+  font-weight: bolder;
+  color: red;
+}
+p {
+  font-size: large;
+  font-weight: bolder;
+  color: red;
+}
